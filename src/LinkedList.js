@@ -8,6 +8,18 @@ export default class LinkedList {
    getSize() {
     return this.size;
   }
+  addLast(data) {
+    if (this.head === null) {
+      this.head = new Node(data);
+    } else {
+      while (this.head !== null) {
+        this.head = this.head.next;
+      }
+
+      this.head.next = new Node(data);
+    }
+    this.size++;
+  }
    addFirst(data) {
     if (this.head === null) {
       this.head = new Node(data);
@@ -86,5 +98,6 @@ export default class LinkedList {
 
   }
 }
+
 
 
