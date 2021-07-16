@@ -1,4 +1,3 @@
-
 import Node from "./Node.js";
 
 export default class LinkedList {
@@ -9,7 +8,19 @@ export default class LinkedList {
    getSize() {
     return this.size;
   }
+ contains(item) {
+    let tail = this.head;
 
+    while (tail !== null) {
+      if (tail.data === item) {
+        return true;
+      } else {
+        tail = tail.next;
+      }
+    }
+
+    return false;
+  }
   reverse() {
     let reversedList = new LinkedList();
 
@@ -65,4 +76,5 @@ export default class LinkedList {
 
   }
 }
+
 
