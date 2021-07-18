@@ -5,9 +5,10 @@ export default class LinkedList {
     this.head = null;
     this.size = 0;
   }
-   getSize() {
+  getSize() {
     return this.size;
   }
+  // you should not move the head, it will remove all other nodes except the one you are adding
   addLast(data) {
     if (this.head === null) {
       this.head = new Node(data);
@@ -20,7 +21,7 @@ export default class LinkedList {
     }
     this.size++;
   }
-   addFirst(data) {
+  addFirst(data) {
     if (this.head === null) {
       this.head = new Node(data);
     } else {
@@ -30,12 +31,14 @@ export default class LinkedList {
     }
     this.size++;
   }
- contains(item) {
+  contains(item) {
+    //tail is a wrong naming
     let tail = this.head;
 
     while (tail !== null) {
       if (tail.data === item) {
         return true;
+        //you don't need else in here
       } else {
         tail = tail.next;
       }
@@ -44,8 +47,9 @@ export default class LinkedList {
     return false;
   }
   reverse() {
+    
     let reversedList = new LinkedList();
-
+    // tail is wrong naming
     let tail = this.head;
     while (tail != null) {
       reversedList.addFirst(tail.data);
@@ -54,22 +58,23 @@ export default class LinkedList {
 
     return reversedList;
   }
- indexOf(item){
+  indexOf(item) {
 
-        let count = 0;
-        let tail = this.head;
-        while(tail !== null){
+    let count = 0;
+    //tail is wrong naming
+    let tail = this.head;
+    while (tail !== null) {
 
-            if(tail.data === item){
-                return count;
-            }else{
-                tail = tail.next;
-                count++;
-            }
-        }
-
-        return -1;
+      if (tail.data === item) {
+        return count;
+      } else {
+        tail = tail.next;
+        count++;
+      }
     }
+
+    return -1;
+  }
   toArray() {
     var arr = [];
     let tail = this.head;
@@ -79,25 +84,25 @@ export default class LinkedList {
     }
 
     return arr;
-  removeFirst() {
-    this.head = this.head.next;
-    this.size--;
-  }
-
-  removeLast() {
-    let tail = this.head.next;
-    let previousNode = this.head;
-
-    while (tail.next !== null) {
-      tail = tail.next;
-      previousNode = previousNode.next;
+    //there is a problem in here with brackets
+    removeFirst() {
+      //needs controls
+      this.head = this.head.next;
+      this.size--;
     }
 
-    previousNode.next = null;
-    this.size--;
+    removeLast() {
+      //tail is wrong naming
+      let tail = this.head.next;
+      let previousNode = this.head;
 
+      while (tail.next !== null) {
+        tail = tail.next;
+        previousNode = previousNode.next;
+      }
+
+      previousNode.next = null;
+      this.size--;
+
+    }
   }
-}
-
-
-
