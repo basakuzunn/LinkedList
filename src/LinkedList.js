@@ -9,14 +9,15 @@ export default class LinkedList {
     return this.size;
   }
   addLast(data) {
-    if (this.head === null) {
-      this.head = new Node(data);
+    let tempHead = this.head;
+    if (tempHead === null) {
+      tempHead = new Node(data);
     } else {
-      while (this.head !== null) {
-        this.head = this.head.next;
+      while (tempHead !== null) {
+        tempHead = tempHead.next;
       }
 
-      this.head.next = new Node(data);
+      tempHead.next = new Node(data);
     }
     this.size++;
   }
@@ -31,13 +32,11 @@ export default class LinkedList {
     this.size++;
   }
  contains(item) {
-    let tail = this.head;
+    let tempHead = this.head;
 
-    while (tail !== null) {
-      if (tail.data === item) {
+    while (tempHead !== null) {
+      if (tempHead.data === item) {
         return true;
-      } else {
-        tail = tail.next;
       }
     }
 
@@ -46,10 +45,10 @@ export default class LinkedList {
   reverse() {
     let reversedList = new LinkedList();
 
-    let tail = this.head;
-    while (tail != null) {
-      reversedList.addFirst(tail.data);
-      tail = tail.next;
+    let tempHead = this.head;
+    while (tempHead != null) {
+      reversedList.addFirst(tempHead.data);
+      tempHead = tempHead.next;
     }
 
     return reversedList;
@@ -57,13 +56,13 @@ export default class LinkedList {
  indexOf(item){
 
         let count = 0;
-        let tail = this.head;
-        while(tail !== null){
+        let tempHead = this.head;
+        while(tempHead !== null){
 
-            if(tail.data === item){
+            if(tempHead.data === item){
                 return count;
             }else{
-                tail = tail.next;
+              tempHead = tempHead.next;
                 count++;
             }
         }
@@ -72,24 +71,25 @@ export default class LinkedList {
     }
   toArray() {
     var arr = [];
-    let tail = this.head;
-    while (tail !== null) {
-      arr.push(tail.data);
-      tail = tail.next;
+    let tempHead = this.head;
+    while (tempHead !== null) {
+      arr.push(tempHead.data);
+      tempHead = tempHead.next;
     }
 
     return arr;
   removeFirst() {
-    this.head = this.head.next;
+    if (this.head === null) {
+    this.head = this.head.next;}
     this.size--;
   }
 
   removeLast() {
-    let tail = this.head.next;
+    let tempHead = this.head.next;
     let previousNode = this.head;
 
-    while (tail.next !== null) {
-      tail = tail.next;
+    while (tempHead.next !== null) {
+      tempHead = tempHead.next;
       previousNode = previousNode.next;
     }
 
@@ -98,6 +98,3 @@ export default class LinkedList {
 
   }
 }
-
-
-
